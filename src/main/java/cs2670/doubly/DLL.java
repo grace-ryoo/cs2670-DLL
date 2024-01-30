@@ -6,8 +6,56 @@ public class DLL<E> {
     private Node<E> tail;
     private int counter;
 
-    public DLL<E>() {
+    private class Node<E> {
+        private E element;
+        private Node<E> prev;
+        private Node<E> next;
 
+        public Node<E>() {
+
+
+        }
+
+        public Node<E>(E element) {
+            this.element = element;
+        }
+
+        public Node<E>(E element, Node<E> prev, Node<E> next) {
+            this.element = element;
+            this.prev = prev;
+            this.next = next;
+        }
+
+        public void setElement(E element) {
+            this.element = element;
+        } // setElement
+
+        public void setPrev(Node<E> prev) {
+            this.prev = prev;
+        } // setPrev
+
+        public void setNext(Node<E> next) {
+            this.next = next;
+        } // setNext
+
+        public E getElement() {
+            return element;
+        } // getElement
+
+        public Node<E> getPrev() {
+            return prev;
+        } // getPrev
+
+        public Node<E> getNext() {
+            return next;
+        } // getNext
+
+    } // Node<E>
+
+    public DLL<E>() {
+        this.head = null;
+        this.tail = null;
+        this.counter = 0;
 
     } // DLL<E>
 
@@ -27,11 +75,11 @@ public class DLL<E> {
         return tail.getElement();
     } // last
 
-    public void addFirst() {
+    public void addFirst(E element) {
 
     } // addFirst
 
-    public void addLast() {
+    public void addLast(E element) {
 
     } // addLast
 
