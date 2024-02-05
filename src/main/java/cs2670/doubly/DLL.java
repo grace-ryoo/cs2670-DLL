@@ -56,7 +56,6 @@ public class DLL<E> {
         this.head = null;
         this.tail = null;
         this.counter = 0;
-
     } // DLL<E>
 
     public int size() {
@@ -76,27 +75,87 @@ public class DLL<E> {
     } // last
 
     public void addFirst(E element) {
-
+        if (isEmpty() == true) {
+            Node<E> temp = new Node<E>(element);
+            this.head = temp;
+            this.tail = temp;
+            this.size++;
+        } else {
+            Node<E> temp = new Node<E>(element);
+            temp.setNext(this.head.getElement);
+            this.head = temp;
+            this.size++;
+        } // if
     } // addFirst
 
     public void addLast(E element) {
-
+        if (isEmpty() == true) {
+            this.tail.setElement(element);
+            this.size++;
+        } else {
+            Node<E> temp = new Node<E>(element);
+            temp.setPrev(this.tail.getElement);
+            this.tail = temp;
+            this.size++;
+        } // if
     } // addLast
 
     public E removeFirst() {
-
+        if (isEmpty() == true) {
+            throw new IndexOutOfBoundsException("Cannot remove from an empty list.");
+        } else {
+            Node<E> removing = this.head.getElement();
+            this.head = removing.getNext();
+        } // if
+        return removing;
     } // removeFirst
 
     public E removeLast() {
-
+        if (isEmpty() == true) {
+            throw new IndexOutOfBoundsException("Cannot remove from an empty list.");
+        } else {
+            Node<E> removing = this.tail.getElement();
+            this.tail = removing.getPrev();
+        } // if
+        return removing;
     } // removeLast
 
     public String toString() {
-
+        String printing = "null";
+        if (isEmpty() == true) { // no elements
+            return printing;
+        } else {
+            Node<E> pointer = this.head;
+            for (int i = 0; i < this.size; i++) {
+                if (pointer.getNext() == null) { // last element
+                    printing += pointer.getElement() + " - - > null";
+                    return printing;
+                } else if (pointer == this.head) { // first element
+                    printing += " < - - " + pointer.getElement();
+                    pointer = pointer.getNext();
+                } else { // middle elements
+                    printing += " < - - > " + pointer.getElement();
+                    pointer = pointer.getNext();
+                } // if
+            } // for
+        } // if
     } // toString
 
     public DLL<E> clone() {
-
+        if (isEmpty() == true) {
+            return null;
+        } // if
+        DLL<E> cloned = new DLL<E>();
+        Node<E> ogPointer = this.head;
+        Node<E> copyPointer = cloned.head;
+        for (int i = 0; i < this.size; i++) {
+            if (ogPointer != null) {
+                copyPointer.setElement(ogPointer.getElement);
+                copyPointer = copyPointer.getNext();
+                ogPointer = ogPointer.setNext();
+            } // if
+        } // for
+        return cloned;
     } // clone
 
     public DLL<E> deepClone() {
