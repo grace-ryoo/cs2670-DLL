@@ -75,29 +75,29 @@ public class DLL<E> {
     } // last
 
     public void addFirst(E element) {
+        Node<E> temp = new Node<E>(element);
         if (isEmpty() == true) {
-            Node<E> temp = new Node<E>(element);
             this.head = temp;
             this.tail = temp;
-            this.counter++;
         } else {
-            Node<E> temp = new Node<E>(element);
             temp.setNext(this.head);
+            this.head.setPrev(temp);
             this.head = temp;
-            this.counter++;
         } // if
+        this.counter++;
     } // addFirst
 
     public void addLast(E element) {
+        Node<E> temp = new Node<E>(element);
         if (isEmpty() == true) {
-            this.tail.setElement(element);
-            this.counter++;
-        } else {
-            Node<E> temp = new Node<E>(element);
-            temp.setPrev(this.tail);
             this.tail = temp;
-            this.counter++;
+            this.head = temp;
+        } else {
+            temp.setPrev(this.tail);
+            this.tail.setNext(temp);
+            this.tail = temp;
         } // if
+        this.counter++;
     } // addLast
 
     public E removeFirst() {
@@ -106,6 +106,7 @@ public class DLL<E> {
         } else {
             Node<E> removing = this.head;
             this.head = removing.getNext();
+            this.counter--;
             return removing.getElement();
         } // if
     } // removeFirst
@@ -116,6 +117,7 @@ public class DLL<E> {
         } else {
             Node<E> removing = this.tail;
             this.tail = removing.getPrev();
+            this.counter--;
             return removing.getElement();
         } // if
     } // removeLast
@@ -126,18 +128,15 @@ public class DLL<E> {
             return printing;
         } else {
             Node<E> pointer = this.head;
-            for (int i = 0; i < this.counter; i++) {
-                if (pointer.getNext() == null) { // last element
-                    printing += pointer.getElement() + " - - > null";
-                    return printing;
-                } else if (pointer == this.head) { // first element
+            while (pointer != null) {
+                if (pointer == this.head) {
                     printing += " < - - " + pointer.getElement();
-                    pointer = pointer.getNext();
-                } else { // middle elements
+                } else {
                     printing += " < - - > " + pointer.getElement();
-                    pointer = pointer.getNext();
                 } // if
-            } // for
+                pointer = pointer.getNext();
+            } // while
+            printing += " - - > null";
         } // if
         return printing;
     } // toString
