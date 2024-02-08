@@ -10,7 +10,8 @@ public class DLLTester {
         testLasts();
         testToString();
         testRemoveFirst();
-
+        testRemoveLast();
+        testClone();
 
     }
 
@@ -77,6 +78,35 @@ public class DLLTester {
         System.out.println("size[4]: " + s.size());
     } // testRemoveFirst
 
+    public static void testRemoveLast() {
+        DLL<Integer> s = new DLL<>();
+        System.out.println("\ntestRemoveLast()");
+        s.addFirst(1);
+        s.addFirst(2);
+        s.addFirst(3);
+        s.addLast(100);
+        s.addLast(1000);
+        String sf = "null < - - 3 < - - > 2 < - - > 1 < - - > 100 < - - > 1000 - - > null";
+        String sf2 = "null < - - 3 < - - > 2 < - - > 1 < - - > 100 - - > null";
+        System.out.println("last[1000]: " + s.last());
+        System.out.println("size[5]: " + s.size());
+        System.out.println("toString[" + sf + "]: " + s.toString());
+        System.out.println("removeLast[1000]: " + s.removeLast());
+        System.out.println("toString[" + sf2 + "]: " + s.toString());
+        System.out.println("size[4]: " + s.size());
+    } // testRemoveLast
+
+    public static void testClone() {
+        DLL<Integer> s = new DLL<>();
+        System.out.println("\ntestClone()");
+        s.addFirst(1);
+        s.addFirst(2);
+        s.addFirst(3);
+        s.addLast(4);
+        String sf = "null < - - 3 < - - > 2 < - - > 1 < - - > 4 - - > null";
+        System.out.println("toString[" + sf + "]: " + s.toString());
+        System.out.println("clone[" + sf + "]: " + s.clone());
+    } // testClone
 
 
 

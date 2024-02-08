@@ -106,6 +106,7 @@ public class DLL<E> {
         } else {
             Node<E> removing = this.head;
             this.head = removing.getNext();
+            this.head.setPrev(null);
             this.counter--;
             return removing.getElement();
         } // if
@@ -117,6 +118,7 @@ public class DLL<E> {
         } else {
             Node<E> removing = this.tail;
             this.tail = removing.getPrev();
+            this.tail.setNext(null);
             this.counter--;
             return removing.getElement();
         } // if
@@ -129,9 +131,9 @@ public class DLL<E> {
         } else {
             Node<E> pointer = this.head;
             while (pointer != null) {
-                if (pointer == this.head) {
+                if (pointer == this.head) { // first element
                     printing += " < - - " + pointer.getElement();
-                } else {
+                } else { // middle element
                     printing += " < - - > " + pointer.getElement();
                 } // if
                 pointer = pointer.getNext();
@@ -147,14 +149,19 @@ public class DLL<E> {
         } // if
         DLL<E> cloned = new DLL<E>();
         Node<E> ogPointer = this.head;
-        Node<E> copyPointer = cloned.head;
-        for (int i = 0; i < this.counter; i++) {
-            if (ogPointer != null) {
-                copyPointer.setElement(ogPointer.getElement());
-                copyPointer = copyPointer.getNext();
-                ogPointer = ogPointer.getNext();
+        while (ogPointer != null) {
+            Node<E> newNd = new Node<>(ogPointer.getElement(), null, null);
+            if (cloned.isEmpty() == true) { // first element
+                cloned.head = newNd;
+                cloned.tail = newNd;
+            } else { // not first element
+                cloned.tail.setNext(newNd);
+                newNd.setPrev(cloned.tail);
+                cloned.tail = newNd;
             } // if
-        } // for
+            ogPointer = ogPointer.getNext();
+        } // while
+        cloned.counter = this.counter;
         return cloned;
     } // clone
 
