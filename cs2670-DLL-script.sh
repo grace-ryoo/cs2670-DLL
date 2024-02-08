@@ -1,3 +1,3 @@
 #!/bin/bash -ex
 
-javac -d bin -cp src/main/java/cs2670/doubly/DLL.java
+javac -d bin src/main/java/cs2670/doubly/DLL.java

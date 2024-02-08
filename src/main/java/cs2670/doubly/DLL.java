@@ -11,16 +11,16 @@ public class DLL<E> {
         private Node<E> prev;
         private Node<E> next;
 
-        public Node<E>() {
+        public Node() {
 
 
         }
 
-        public Node<E>(E element) {
+        public Node(E element) {
             this.element = element;
         }
 
-        public Node<E>(E element, Node<E> prev, Node<E> next) {
+        public Node(E element, Node<E> prev, Node<E> next) {
             this.element = element;
             this.prev = prev;
             this.next = next;
@@ -52,7 +52,7 @@ public class DLL<E> {
 
     } // Node<E>
 
-    public DLL<E>() {
+    public DLL() {
         this.head = null;
         this.tail = null;
         this.counter = 0;
@@ -79,24 +79,24 @@ public class DLL<E> {
             Node<E> temp = new Node<E>(element);
             this.head = temp;
             this.tail = temp;
-            this.size++;
+            this.counter++;
         } else {
             Node<E> temp = new Node<E>(element);
-            temp.setNext(this.head.getElement);
+            temp.setNext(this.head);
             this.head = temp;
-            this.size++;
+            this.counter++;
         } // if
     } // addFirst
 
     public void addLast(E element) {
         if (isEmpty() == true) {
             this.tail.setElement(element);
-            this.size++;
+            this.counter++;
         } else {
             Node<E> temp = new Node<E>(element);
-            temp.setPrev(this.tail.getElement);
+            temp.setPrev(this.tail);
             this.tail = temp;
-            this.size++;
+            this.counter++;
         } // if
     } // addLast
 
@@ -104,20 +104,20 @@ public class DLL<E> {
         if (isEmpty() == true) {
             throw new IndexOutOfBoundsException("Cannot remove from an empty list.");
         } else {
-            Node<E> removing = this.head.getElement();
+            Node<E> removing = this.head;
             this.head = removing.getNext();
+            return removing.getElement();
         } // if
-        return removing;
     } // removeFirst
 
     public E removeLast() {
         if (isEmpty() == true) {
             throw new IndexOutOfBoundsException("Cannot remove from an empty list.");
         } else {
-            Node<E> removing = this.tail.getElement();
+            Node<E> removing = this.tail;
             this.tail = removing.getPrev();
+            return removing.getElement();
         } // if
-        return removing;
     } // removeLast
 
     public String toString() {
@@ -126,7 +126,7 @@ public class DLL<E> {
             return printing;
         } else {
             Node<E> pointer = this.head;
-            for (int i = 0; i < this.size; i++) {
+            for (int i = 0; i < this.counter; i++) {
                 if (pointer.getNext() == null) { // last element
                     printing += pointer.getElement() + " - - > null";
                     return printing;
@@ -139,6 +139,7 @@ public class DLL<E> {
                 } // if
             } // for
         } // if
+        return printing;
     } // toString
 
     public DLL<E> clone() {
@@ -148,51 +149,50 @@ public class DLL<E> {
         DLL<E> cloned = new DLL<E>();
         Node<E> ogPointer = this.head;
         Node<E> copyPointer = cloned.head;
-        for (int i = 0; i < this.size; i++) {
+        for (int i = 0; i < this.counter; i++) {
             if (ogPointer != null) {
-                copyPointer.setElement(ogPointer.getElement);
+                copyPointer.setElement(ogPointer.getElement());
                 copyPointer = copyPointer.getNext();
-                ogPointer = ogPointer.setNext();
+                ogPointer = ogPointer.getNext();
             } // if
         } // for
         return cloned;
     } // clone
 
     public DLL<E> deepClone() {
-
+        throw new UnsupportedOperationException("Method is not implemented yet.");
     } // deepClone
 
-    public void insert() {
-
+    public void insert(int index, E Element) {
+        throw new UnsupportedOperationException("Method is not implemented yet.");
     } // insert
 
-    public E get() {
-
-
+    public E get(int index) {
+        throw new UnsupportedOperationException("Method is not implemented yet.");
     } // get
 
-    public E remove() {
-
+    public E remove(int index) {
+        throw new UnsupportedOperationException("Method is not implemented yet.");
     } // remove
 
-    public void remove() {
-
+    public void remove(Node<E> x) {
+        throw new UnsupportedOperationException("Method is not implemented yet.");
     } // remove
 
-    public Node<E> find() {
-
+    public Node<E> find(E element) {
+        throw new UnsupportedOperationException("Method is not implemented yet.");
     } // find
 
-    public void swap() {
-
+    public void swap(Node<E> x, Node<E> y) {
+        throw new UnsupportedOperationException("Method is not implemented yet.");
     } // swap
 
     public void clear() {
-
+        throw new UnsupportedOperationException("Method is not implemented yet.");
     } // clear
 
-    public E set() {
-
+    public E set(int index, E element) {
+        throw new UnsupportedOperationException("Method is not implemented yet.");
     } // set
 
 
