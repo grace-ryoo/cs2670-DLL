@@ -13,9 +13,14 @@ public class DLLTester {
         testRemoveFirst();
         testRemoveLast();
         */
+
+        /**
         testClone();
         testCloneAgain();
-    }
+        testDeepClone();
+        */
+        testInsert();
+    } // main
 
     public static void testSize() {
         DLL<String> s = new DLL<>();
@@ -100,14 +105,18 @@ public class DLLTester {
 
     public static void testClone() {
         DLL<Integer> s = new DLL<>();
-        System.out.println("\ntestClone()");
         s.addFirst(1);
         s.addFirst(2);
         s.addFirst(3);
         s.addLast(4);
         String sf = "null < - - 3 < - - > 2 < - - > 1 < - - > 4 - - > null";
-        System.out.println("toString[" + sf + "]: " + s.toString());
-        System.out.println("clone[" + sf + "]: " + s.clone());
+        DLL<Integer> shallow = s.clone();
+        if (shallow == s) {
+            System.out.println("testClone(): test passed");
+        } else {
+            System.out.println("testClone(): test failed");
+            System.out.println(shallow.toString());
+        } // if
     } // testClone
 
     public static void testCloneAgain() {
@@ -126,9 +135,34 @@ public class DLLTester {
         System.out.println(shallow);
     } // testCloneAgain
 
+    public static void testDeepClone() {
+        DLL<Integer> s = new DLL<>();
+        s.addFirst(1);
+        s.addFirst(2);
+        s.addFirst(3);
+        String sf = "null < - - 3 < - - > 2 < - - > 1 - - > null";
+        DLL<Integer> deep = s.deepClone();
+        if (s == deep) {
+            System.out.println("testDeepClone(): test passed");
+        } else {
+            System.out.println("testDeepClone(): test failed");
+        } // if
+    } // testDeepClone
 
-
-
+    public static void testInsert() {
+        DLL<Integer> s = new DLL<>();
+        s.addFirst(1);
+        s.addFirst(2);
+        s.addFirst(3);
+        s.insert(1, 100);
+        String sf = "null < - - 3 < - - > 100 < - - > 2 < - - > 1 - - > null";
+        if (s.toString().equals(sf)) {
+            System.out.println("testInsert(): test passed");
+        } else {
+            System.out.println("testInsert(): test failed");
+            System.out.println(s.toString());
+        } // if
+    } // testInsert
 
 
 } // DLLTester

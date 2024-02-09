@@ -157,36 +157,61 @@ public class DLL<E> {
     } // clone
 
     public DLL<E> deepClone() {
-        throw new UnsupportedOperationException("Method is not implemented yet.");
-        /**
         DLL<E> cloned = new DLL<>();
         if (this.isEmpty() == true) {
             return cloned;
         } // if
         Node<E> ogPointer = this.head;
         while (ogPointer != null) {
-            Node<E> newNd = new Node<>(ogPointer.getElement(), null, null);
-            if (cloned.isEmpty() == true) { // first element
-                cloned.head = newNd;
-                cloned.tail = newNd;
-            } else { // not first element
-                cloned.tail.setNext(newNd);
-                newNd.setPrev(cloned.tail);
-                cloned.tail = newNd;
-            } // if
+            cloned.addLast(ogPointer.getElement());
             ogPointer = ogPointer.getNext();
         } // while
-        cloned.counter = this.counter;
         return cloned;
-        */
     } // deepClone
 
-    public void insert(int index, E Element) {
-        throw new UnsupportedOperationException("Method is not implemented yet.");
+    public void insert(int index, E element) {
+        if (index < 0 || index >= this.counter) {
+            throw new IndexOutOfBoundsException("index is out of range");
+        } else {
+            Node<E> pointer = this.head;
+            Node<E> temp = new Node<>(element);
+            int idxCount = 0;
+            while (pointer != null && idxCount != this.counter) {
+                if (idxCount == index) {
+                    temp.setPrev(pointer.getPrev());
+                    temp.setNext(pointer);
+                    if (pointer.getPrev() != null) {
+                        pointer.getPrev().setNext(temp);
+                    } // if
+                    pointer.setPrev(temp);
+                    if (pointer == this.head) {
+                        this.head = temp;
+                    } // if
+                    idxCount = this.counter;
+                } else {
+                    pointer = pointer.getNext();
+                    idxCount++;
+                } // else
+            } // while
+            this.counter++;
+        } // if
     } // insert
 
     public E get(int index) {
-        throw new UnsupportedOperationException("Method is not implemented yet.");
+        if (index < 0 || index >= this.counter) {
+            return null;
+        } else {
+            Node<E> pointer = this.head;
+            int idxCount = 0;
+            while (pointer != null && idxCount != this.counter) {
+                if (idxCount == index) {
+                    return pointer.getElement();
+                } else {
+                    pointer = pointer.getNext();
+                    idxCount++;
+                } // if
+            } // while
+        } // if
     } // get
 
     public E remove(int index) {
