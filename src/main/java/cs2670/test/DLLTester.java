@@ -5,14 +5,16 @@ import cs2670.doubly.DLL;
 public class DLLTester {
     public static void main(String[] args) {
         System.out.println("\n--- DLL Test Cases ---");
+        /**
         testSize();
         testFirsts();
         testLasts();
         testToString();
         testRemoveFirst();
         testRemoveLast();
+        */
         testClone();
-
+        testCloneAgain();
     }
 
     public static void testSize() {
@@ -108,6 +110,21 @@ public class DLLTester {
         System.out.println("clone[" + sf + "]: " + s.clone());
     } // testClone
 
+    public static void testCloneAgain() {
+        DLL<String> s = new DLL<>();
+        System.out.println("\ntestCloneAgain()");
+        s.addLast("hi");
+        s.addFirst("how");
+        s.addLast("are");
+        s.addFirst("you");
+        s.addFirst("yay");
+        String sf = "null < - - yay < - - > you < - - > how < - - > hi < - - > are - - > null";
+        DLL<String> shallow = s.clone();
+        System.out.println("toString[" + sf + "]: " + s.toString());
+        System.out.println("clone[" + sf + "]: " + shallow);
+        s.addLast("done");
+        System.out.println(shallow);
+    } // testCloneAgain
 
 
 

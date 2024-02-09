@@ -144,10 +144,25 @@ public class DLL<E> {
     } // toString
 
     public DLL<E> clone() {
-        if (isEmpty() == true) {
-            return null;
+        DLL<E> cloned = new DLL<>();
+        if (this.isEmpty() == true) {
+            return cloned;
         } // if
-        DLL<E> cloned = new DLL<E>();
+        Node<E> ogPointer = this.head;
+        while (ogPointer != null) {
+            cloned.addLast(ogPointer.getElement());
+            ogPointer = ogPointer.getNext();
+        } // while
+        return cloned;
+    } // clone
+
+    public DLL<E> deepClone() {
+        throw new UnsupportedOperationException("Method is not implemented yet.");
+        /**
+        DLL<E> cloned = new DLL<>();
+        if (this.isEmpty() == true) {
+            return cloned;
+        } // if
         Node<E> ogPointer = this.head;
         while (ogPointer != null) {
             Node<E> newNd = new Node<>(ogPointer.getElement(), null, null);
@@ -163,10 +178,7 @@ public class DLL<E> {
         } // while
         cloned.counter = this.counter;
         return cloned;
-    } // clone
-
-    public DLL<E> deepClone() {
-        throw new UnsupportedOperationException("Method is not implemented yet.");
+        */
     } // deepClone
 
     public void insert(int index, E Element) {
