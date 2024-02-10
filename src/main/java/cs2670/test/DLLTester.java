@@ -12,6 +12,8 @@ public class DLLTester {
         testToString();
         testRemoveFirst();
         testRemoveLast();
+        testInsert();
+        testGet();
         */
 
         /**
@@ -19,7 +21,9 @@ public class DLLTester {
         testCloneAgain();
         testDeepClone();
         */
-        testInsert();
+
+        testRemove1();
+
     } // main
 
     public static void testSize() {
@@ -164,5 +168,41 @@ public class DLLTester {
         } // if
     } // testInsert
 
+    public static void testGet() {
+        DLL<Integer> s = new DLL<>();
+        s.addFirst(1);
+        s.addFirst(2);
+        s.addFirst(3);
+        if (s.get(0).equals(3)) {
+            System.out.println("testGet(): test passed");
+        } else {
+            System.out.println("testGet(): test failed");
+            System.out.println(s.get(0));
+        } // if
+    } // testGet
+
+    public static void testRemove1() {
+        DLL<Integer> s = new DLL<>();
+        s.addFirst(1);
+        s.addFirst(2);
+        s.addFirst(3);
+        String sf = "null < - - 2 < - - > 1 - - > null";
+        System.out.println(s.remove(0));
+        s.remove(0);
+        System.out.println(s.toString());
+/**
+        if (s.remove(0).equals(3)) {
+            System.out.println("testRemove1(): test passed");
+            if (s.toString().equals(sf)) {
+                System.out.println("testRemove1(): test passed");
+            } else {
+                System.out.println("inner test failed");
+                System.out.println(s.toString());
+            } // if
+        } else {
+            System.out.println("testRemove1(): test failed");
+        } //
+*/
+    } // testRemove1
 
 } // DLLTester

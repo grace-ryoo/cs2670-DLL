@@ -202,20 +202,48 @@ public class DLL<E> {
             return null;
         } else {
             Node<E> pointer = this.head;
+            E returned = null;
             int idxCount = 0;
             while (pointer != null && idxCount != this.counter) {
                 if (idxCount == index) {
-                    return pointer.getElement();
+                    returned = pointer.getElement();
+                    idxCount = this.counter;
                 } else {
                     pointer = pointer.getNext();
                     idxCount++;
                 } // if
             } // while
+            return returned;
         } // if
     } // get
 
     public E remove(int index) {
-        throw new UnsupportedOperationException("Method is not implemented yet.");
+        if (index < 0 || index >= this.counter) {
+            throw new IndexOutOfBoundsException("index is out of range");
+        } else {
+            Node<E> pointer = this.head;
+            E removing = null;
+            int idxCount = 0;
+            while (pointer != null && idxCount != this.counter) {
+                pointer = pointer.getNext();
+                idxCount++;
+            } // while
+            if (pointer != null) {
+                removing = pointer.getElement();
+                if (pointer.getPrev() != null) {
+                    pointer.getPrev().setNext(pointer.getNext());
+                } else {
+                    this.head = pointer.getNext();
+                } // if
+                if (pointer.getNext() != null) {
+                    pointer.getNext().setPrev(pointer.getPrev());
+                } else {
+                    this.tail = pointer.getPrev();
+                } // if
+                this.counter--;
+            } // if
+            return removing;
+        } // if
     } // remove
 
     public void remove(Node<E> x) {
