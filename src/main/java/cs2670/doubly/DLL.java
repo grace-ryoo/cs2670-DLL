@@ -222,32 +222,55 @@ public class DLL<E> {
             throw new IndexOutOfBoundsException("index is out of range");
         } else {
             Node<E> pointer = this.head;
-            E removing = null;
-            int idxCount = 0;
-            while (pointer != null && idxCount != this.counter) {
+            for (int i = 0; i < index; i++) {
                 pointer = pointer.getNext();
-                idxCount++;
-            } // while
-            if (pointer != null) {
-                removing = pointer.getElement();
-                if (pointer.getPrev() != null) {
-                    pointer.getPrev().setNext(pointer.getNext());
-                } else {
-                    this.head = pointer.getNext();
-                } // if
-                if (pointer.getNext() != null) {
-                    pointer.getNext().setPrev(pointer.getPrev());
-                } else {
-                    this.tail = pointer.getPrev();
-                } // if
-                this.counter--;
+            } // for
+            E removing = pointer.getElement();
+            if (pointer.getPrev() != null) {
+                pointer.getPrev().setNext(pointer.getNext());
+            } else {
+                this.head = pointer.getNext();
+            } // if
+            if (pointer.getNext() != null) {
+                pointer.getNext().setPrev(pointer.getPrev());
+            } else {
+                this.tail = pointer.getPrev();
+            } // if
+            this.counter--;
+            if (this.counter == 0) {
+                this.tail = null;
             } // if
             return removing;
         } // if
     } // remove
 
     public void remove(Node<E> x) {
-        throw new UnsupportedOperationException("Method is not implemented yet.");
+        if (x == null) {
+            throw new NullPointerException("Node<E> x is null");
+        } else {
+            Node<E> pointer = this.head;
+            while (pointer != null) {
+                if (pointer.equals(x)) {
+                    if (pointer.getPrev() != null) {
+                        pointer.getPrev().setNext(pointer.getNext());
+                    } else {
+                        this.head = pointer.getNext();
+                    } // if
+                    if (pointer.getNext() != null) {
+                        pointer.getNext().setPrev(pointer.getPrev());
+                    } else {
+                        this.tail = pointer.getPrev();
+                    } // if
+                    return;
+                } else {
+                    pointer = pointer.getNext();
+                } // if
+            } // while
+            this.counter--;
+            if (this.counter == 0) {
+                this.tail = null;
+            } // if
+        } // if
     } // remove
 
     public Node<E> find(E element) {

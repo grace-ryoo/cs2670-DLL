@@ -2,6 +2,7 @@ package cs2670.test;
 
 import cs2670.doubly.DLL;
 
+
 public class DLLTester {
     public static void main(String[] args) {
         System.out.println("\n--- DLL Test Cases ---");
@@ -14,6 +15,7 @@ public class DLLTester {
         testRemoveLast();
         testInsert();
         testGet();
+        testRemove1();
         */
 
         /**
@@ -22,7 +24,7 @@ public class DLLTester {
         testDeepClone();
         */
 
-        testRemove1();
+//        testRemove2();
 
     } // main
 
@@ -188,21 +190,17 @@ public class DLLTester {
         s.addFirst(3);
         String sf = "null < - - 2 < - - > 1 - - > null";
         System.out.println(s.remove(0));
-        s.remove(0);
+        System.out.println(s.remove(0));
+        System.out.println(s.remove(0));
         System.out.println(s.toString());
-/**
-        if (s.remove(0).equals(3)) {
-            System.out.println("testRemove1(): test passed");
-            if (s.toString().equals(sf)) {
-                System.out.println("testRemove1(): test passed");
-            } else {
-                System.out.println("inner test failed");
-                System.out.println(s.toString());
-            } // if
-        } else {
-            System.out.println("testRemove1(): test failed");
-        } //
-*/
     } // testRemove1
+
+    public static void testRemove2() {
+        DLL<Integer> s = new DLL<>();
+        s.addFirst(1);
+        s.addFirst(2);
+        s.addFirst(3);
+        System.out.println(s);
+    } // testRemove2
 
 } // DLLTester
