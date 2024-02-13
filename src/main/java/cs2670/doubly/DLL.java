@@ -156,19 +156,6 @@ public class DLL<E> {
         return cloned;
     } // clone
 
-    public DLL<E> deepClone() {
-        DLL<E> cloned = new DLL<>();
-        if (this.isEmpty() == true) {
-            return cloned;
-        } // if
-        Node<E> ogPointer = this.head;
-        while (ogPointer != null) {
-            cloned.addLast(ogPointer.getElement());
-            ogPointer = ogPointer.getNext();
-        } // while
-        return cloned;
-    } // deepClone
-
     public void insert(int index, E element) {
         if (index < 0 || index >= this.counter) {
             throw new IndexOutOfBoundsException("index is out of range");
@@ -274,7 +261,19 @@ public class DLL<E> {
     } // remove
 
     public Node<E> find(E element) {
-        throw new UnsupportedOperationException("Method is not implemented yet.");
+        if (element == null) {
+            throw new NullPointerException("E element is null");
+        } else {
+            Node<E> pointer = this.head;
+            while (pointer != null) {
+                if (pointer.getElement().equals(element)) {
+                    return pointer;
+                } else {
+                    pointer = pointer.getNext();
+                } // if
+            } // while
+            return null;
+        } // if
     } // find
 
     public void swap(Node<E> x, Node<E> y) {
@@ -282,11 +281,25 @@ public class DLL<E> {
     } // swap
 
     public void clear() {
-        throw new UnsupportedOperationException("Method is not implemented yet.");
+        this.head = null;
+        this.tail = null;
+        this.counter = 0;
     } // clear
 
     public E set(int index, E element) {
-        throw new UnsupportedOperationException("Method is not implemented yet.");
+        if (index < 0 || index >= this.counter) {
+            throw new IndexOutOfBoundsException("index is out of range");
+        } else if (element == null) {
+            throw new NullPointerException("E element is null");
+        } else {
+            Node<E> pointer = this.head;
+            for (int i = 0; i < index; i++) {
+                pointer = pointer.getNext();
+            } // for
+            E returned = pointer.getElement();
+            pointer.setElement(element);
+            return returned;
+        } // if
     } // set
 
 

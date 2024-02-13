@@ -16,16 +16,17 @@ public class DLLTester {
         testInsert();
         testGet();
         testRemove1();
+        testFind();
+        testClear();
         */
 
         /**
         testClone();
         testCloneAgain();
-        testDeepClone();
         */
 
 //        testRemove2();
-
+        testSet();
     } // main
 
     public static void testSize() {
@@ -141,20 +142,6 @@ public class DLLTester {
         System.out.println(shallow);
     } // testCloneAgain
 
-    public static void testDeepClone() {
-        DLL<Integer> s = new DLL<>();
-        s.addFirst(1);
-        s.addFirst(2);
-        s.addFirst(3);
-        String sf = "null < - - 3 < - - > 2 < - - > 1 - - > null";
-        DLL<Integer> deep = s.deepClone();
-        if (s == deep) {
-            System.out.println("testDeepClone(): test passed");
-        } else {
-            System.out.println("testDeepClone(): test failed");
-        } // if
-    } // testDeepClone
-
     public static void testInsert() {
         DLL<Integer> s = new DLL<>();
         s.addFirst(1);
@@ -202,5 +189,38 @@ public class DLLTester {
         s.addFirst(3);
         System.out.println(s);
     } // testRemove2
+
+    public static void testFind() {
+        DLL<Integer> s = new DLL<>();
+        s.addFirst(1);
+        s.addFirst(2);
+        s.addFirst(3);
+        System.out.println(s.find(3));
+        System.out.println(s.find(4));
+    } // testFind
+
+    public static void testClear() {
+        DLL<Integer> s = new DLL<>();
+        s.addFirst(1);
+        s.addFirst(2);
+        s.addFirst(3);
+        s.clear();
+        System.out.println(s);
+        System.out.println(s.size());
+    } // testClear
+
+    public static void testSet() {
+        DLL<Integer> s = new DLL<>();
+        s.addFirst(1);
+        s.addFirst(2);
+        s.addFirst(3);
+        System.out.println(s.set(0,100));
+        System.out.println(s.size());
+        System.out.println(s);
+
+
+    } // testSet
+
+
 
 } // DLLTester
