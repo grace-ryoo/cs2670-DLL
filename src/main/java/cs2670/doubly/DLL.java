@@ -279,7 +279,27 @@ public class DLL<E> {
     } // find
 
     public void swap(Node<E> x, Node<E> y) {
-        throw new UnsupportedOperationException("Method is not implemented yet.");
+        if (x == y || x == null || y == null) {
+            return;
+        } // if
+        Node<E> xPointer = this.head;
+        Node<E> yPointer = this.head;
+        Node<E> prevTempx = null;
+        Node<E> nextTempx = null;
+        Node<E> prevTempy = null;
+        Node<E> nextTempy = null;
+
+        while (pointer != null) {
+            if (pointer == x) {
+                prevTempx = pointer.getPrev;
+                nextTempx = pointer.getNext();
+            } else if (pointer == y) {
+                prevTempy = pointer.getPrev;
+                nextTempy = pointer.getNext();
+            } // if
+            pointer = pointer.getNext();
+        } // while
+
     } // swap
 
     public void clear() {
