@@ -18,15 +18,14 @@ public class DLLTester {
         testRemove1();
         testFind();
         testClear();
-        */
-
-        /**
+        testSet();
         testClone();
         testCloneAgain();
+        testClone3();
         */
 
 //        testRemove2();
-        testSet();
+
     } // main
 
     public static void testSize() {
@@ -118,12 +117,7 @@ public class DLLTester {
         s.addLast(4);
         String sf = "null < - - 3 < - - > 2 < - - > 1 < - - > 4 - - > null";
         DLL<Integer> shallow = s.clone();
-        if (shallow == s) {
-            System.out.println("testClone(): test passed");
-        } else {
-            System.out.println("testClone(): test failed");
-            System.out.println(shallow.toString());
-        } // if
+        System.out.println(s.equals(shallow));
     } // testClone
 
     public static void testCloneAgain() {
@@ -136,10 +130,7 @@ public class DLLTester {
         s.addFirst("yay");
         String sf = "null < - - yay < - - > you < - - > how < - - > hi < - - > are - - > null";
         DLL<String> shallow = s.clone();
-        System.out.println("toString[" + sf + "]: " + s.toString());
-        System.out.println("clone[" + sf + "]: " + shallow);
-        s.addLast("done");
-        System.out.println(shallow);
+        System.out.println(s.equals(shallow));
     } // testCloneAgain
 
     public static void testInsert() {
@@ -217,10 +208,19 @@ public class DLLTester {
         System.out.println(s.set(0,100));
         System.out.println(s.size());
         System.out.println(s);
-
-
     } // testSet
 
+    public static void testClone3() {
+        DLL<Integer> s = new DLL<>();
+        s.addLast(1);
+        s.addLast(2);
+        DLL<Integer> sc = s.clone();
+        System.out.println(sc);
+        System.out.println(sc.size());
+        System.out.println(sc.first());
+        System.out.println(sc.last());
+        System.out.println(sc.equals(s));
+    } // testClone3
 
 
 } // DLLTester

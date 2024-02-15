@@ -1,5 +1,7 @@
 package cs2670.doubly;
 
+import java.util.Objects;
+
 public class DLL<E> {
 
     private Node<E> head;
@@ -302,6 +304,31 @@ public class DLL<E> {
         } // if
     } // set
 
+    @Override
+    public boolean equals(Object ob) {
+        if (this == ob) {
+            return true;
+        } // if
+
+        if (ob instanceof DLL) {
+            DLL<E> obb = (DLL<E>) ob;
+            if (this.counter == obb.size()) {
+                Node<E> pointerThis = this.head;
+                Node<E> pointerThat = obb.head;
+                while (pointerThis != null && pointerThat != null) {
+                    if (pointerThis.getElement().equals(pointerThat.getElement())) {
+                        pointerThis = pointerThis.getNext();
+                        pointerThat = pointerThat.getNext();
+                    } else {
+                        return false;
+                    } // if
+                } // while
+                return true;
+            } // if
+        } // if
+        return false;
+
+    } // equals
 
 
 
