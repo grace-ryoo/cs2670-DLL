@@ -24,12 +24,27 @@ public class DLLTester {
         testClone3();
         testClone4();
         testRemove2();
+        testSwap();
         */
 
 
 
 
     } // main
+
+    public static void testSwap() {
+        DLL<Integer> s = new DLL<>();
+        s.addLast(1);
+        s.addLast(10);
+        s.addLast(100);
+        s.addLast(300);
+        System.out.println(s);
+        s.swap(s.find(1),s.find(100));
+        System.out.println(s);
+        System.out.println(s.first());
+        System.out.println(s.last());
+        System.out.println(s.size());
+    } // testSwap
 
     public static void testSize() {
         DLL<String> s = new DLL<>();
@@ -245,5 +260,6 @@ public class DLLTester {
         System.out.println(copy.size());
 
     } // testClone4
+
 
 } // DLLTester

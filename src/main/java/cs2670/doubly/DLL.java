@@ -270,29 +270,45 @@ public class DLL<E> {
     } // find
 
     public void swap(Node<E> x, Node<E> y) {
-        throw new UnsupportedOperationException("not implemented yet");
-        /**
         if (x == y || x == null || y == null) {
             return;
         } // if
-        Node<E> xPointer = this.head;
-        Node<E> yPointer = this.head;
-        Node<E> prevTempx = null;
-        Node<E> nextTempx = null;
-        Node<E> prevTempy = null;
-        Node<E> nextTempy = null;
 
-        while (pointer != null) {
-            if (pointer == x) {
-                prevTempx = pointer.getPrev;
-                nextTempx = pointer.getNext();
-            } else if (pointer == y) {
-                prevTempy = pointer.getPrev;
-                nextTempy = pointer.getNext();
-            } // if
-            pointer = pointer.getNext();
-        } // while
-        */
+        Node<E> prevTempx = x.getPrev();
+        Node<E> nextTempx = x.getNext();
+        Node<E> prevTempy = y.getPrev();
+        Node<E> nextTempy = y.getNext();
+        Node<E> temp = x;
+
+        if (prevTempx != null) {
+            prevTempx.setNext(y);
+        } else {
+            this.head = y;
+        } // if
+
+        if (nextTempx != null) {
+            nextTempx.setPrev(y);
+        } else {
+            this.tail = y;
+        } // if
+
+        if (prevTempy != null) {
+            prevTempy.setNext(x);
+        } else {
+            this.head = x;
+        } // if
+
+        if (prevTempy != null) {
+            prevTempy.setNext(x);
+        } else {
+            this.head = x;
+        } // if
+
+
+        x.setPrev(prevTempy);
+        x.setNext(nextTempy);
+        y.setPrev(prevTempx);
+        y.setNext(nextTempx);
     } // swap
 
     public void clear() {
@@ -316,33 +332,6 @@ public class DLL<E> {
             return returned;
         } // if
     } // set
-
-    @Override
-    public boolean equals(Object ob) {
-        if (this == ob) {
-            return true;
-        } // if
-
-        if (ob instanceof DLL) {
-            DLL<E> obb = (DLL<E>) ob;
-            if (this.counter == obb.size()) {
-                Node<E> pointerThis = this.head;
-                Node<E> pointerThat = obb.head;
-                while (pointerThis != null && pointerThat != null) {
-                    if (pointerThis.getElement().equals(pointerThat.getElement())) {
-                        pointerThis = pointerThis.getNext();
-                        pointerThat = pointerThat.getNext();
-                    } else {
-                        return false;
-                    } // if
-                } // while
-                return true;
-            } // if
-        } // if
-        return false;
-
-    } // equals
-
 
 
 } // DLL
