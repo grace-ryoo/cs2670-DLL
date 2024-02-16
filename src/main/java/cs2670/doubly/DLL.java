@@ -1,7 +1,5 @@
 package cs2670.doubly;
 
-import java.util.Objects;
-
 public class DLL<E> {
 
     private Node<E> head;
@@ -146,15 +144,7 @@ public class DLL<E> {
     } // toString
 
     public DLL<E> clone() {
-        DLL<E> cloned = new DLL<>();
-        if (this.isEmpty() == true) {
-            return cloned;
-        } // if
-        Node<E> ogPointer = this.head;
-        while (ogPointer != null) {
-            cloned.addLast(ogPointer.getElement());
-            ogPointer = ogPointer.getNext();
-        } // while
+        DLL<E> cloned = this;
         return cloned;
     } // clone
 
@@ -250,15 +240,16 @@ public class DLL<E> {
                     } else {
                         this.tail = pointer.getPrev();
                     } // if
+                    this.counter--;
+                    if (this.counter == 0) {
+                        this.tail = null;
+                    } // if
                     return;
                 } else {
                     pointer = pointer.getNext();
                 } // if
             } // while
-            this.counter--;
-            if (this.counter == 0) {
-                this.tail = null;
-            } // if
+            throw new IllegalArgumentException("Node<E> x is not in the list");
         } // if
     } // remove
 
@@ -279,6 +270,8 @@ public class DLL<E> {
     } // find
 
     public void swap(Node<E> x, Node<E> y) {
+        throw new UnsupportedOperationException("not implemented yet");
+        /**
         if (x == y || x == null || y == null) {
             return;
         } // if
@@ -299,7 +292,7 @@ public class DLL<E> {
             } // if
             pointer = pointer.getNext();
         } // while
-
+        */
     } // swap
 
     public void clear() {

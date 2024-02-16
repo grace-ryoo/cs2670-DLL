@@ -22,9 +22,12 @@ public class DLLTester {
         testClone();
         testCloneAgain();
         testClone3();
+        testClone4();
+        testRemove2();
         */
 
-//        testRemove2();
+
+
 
     } // main
 
@@ -178,7 +181,11 @@ public class DLLTester {
         s.addFirst(1);
         s.addFirst(2);
         s.addFirst(3);
+        s.remove(s.find(3));
         System.out.println(s);
+        s.remove(s.find(1));
+        System.out.println(s);
+        System.out.println(s.size());
     } // testRemove2
 
     public static void testFind() {
@@ -222,5 +229,21 @@ public class DLLTester {
         System.out.println(sc.equals(s));
     } // testClone3
 
+    public static void testClone4() {
+        DLL<Integer> s = new DLL<>();
+        s.addLast(1);
+        s.addLast(2);
+        DLL<Integer> copy = s.clone();
+        s.addLast(3);
+        System.out.println(copy);
+        System.out.println(copy.size());
+        s.insert(1,300);
+        System.out.println(copy);
+        System.out.println(copy.size());
+        copy.remove(0);
+        System.out.println(copy);
+        System.out.println(copy.size());
+
+    } // testClone4
 
 } // DLLTester
