@@ -298,10 +298,10 @@ public class DLL<E> {
             this.head = x;
         } // if
 
-        if (prevTempy != null) {
-            prevTempy.setNext(x);
+        if (nextTempy != null) {
+            nextTempy.setPrev(x);
         } else {
-            this.head = x;
+            this.tail = x;
         } // if
 
 

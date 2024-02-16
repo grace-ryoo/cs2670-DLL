@@ -28,7 +28,7 @@ public class DLLTester {
         */
 
 
-
+//        allTester();
 
     } // main
 
@@ -261,5 +261,50 @@ public class DLLTester {
 
     } // testClone4
 
+    public static void allTester() {
+        DLL<String> s = new DLL<>();
+        System.out.println("isEmpty: " + s.isEmpty());
+        s.addFirst("hi");
+        s.addLast("oh");
+        s.addFirst("you");
+        s.addFirst("computer");
+        System.out.println("isEmpty: " + s.isEmpty());
+        System.out.println(s.first());
+        System.out.println(s.last());
+        System.out.println("size: " + s.size());
+        System.out.println(s.toString());
+        DLL<String> sc = s.clone();
+        System.out.println("clone info:");
+        System.out.println(sc.first());
+        System.out.println(sc.last());
+        System.out.println("size sc: " + sc.size());
+        System.out.println(sc.toString());
+        s.insert(2, "inserted");
+        System.out.println(s.toString());
+        System.out.println("size after insert: " + s.size());
+        System.out.println("size sc after insert: " + sc.size());
+        System.out.println("s get(2): " + s.get(2));
+        System.out.println("sc get(2): " + sc.get(2));
+        System.out.println("s get(7): " + s.get(7));
+        System.out.println("s.remove(3): " + s.remove(3));
+        System.out.println(s.toString());
+//        System.out.println(s.remove(s.find("you")));
+        System.out.println("find(computer):" + s.find("computer"));
+        s.addLast("gray");
+        s.addLast("blue");
+        System.out.println(s);
+        s.swap(s.find("computer"),s.find("gray"));
+        System.out.println(s);
+        System.out.println("swap blue inserted");
+        s.swap(s.find("blue"),s.find("inserted"));
+        System.out.println(s.toString());
+        System.out.println("size after swaps: " + s.size());
+        System.out.println(s.set(2, "set"));
+        System.out.println(s);
+        s.clear();
+        System.out.println(s.size());
+        System.out.println(s);
+        System.out.println(s.isEmpty());
+    } // allTester
 
 } // DLLTester
